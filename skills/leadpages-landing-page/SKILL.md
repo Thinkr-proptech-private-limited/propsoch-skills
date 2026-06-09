@@ -67,6 +67,7 @@ Ask: **"Add, remove, or reorder any section?"** Apply, re-draw the wireframe if 
 - Alternate section backgrounds white ↔ `bg-neutral-surface` for separation.
 - Colors: `colors.css` classes only. Typography: `typography.css` classes only.
 - Logos: reference the brand-kit assets (see `references/logos.md`) — they already exist in the LeadPages brand kit; don't inline SVG.
+- Footer: use the canonical structure + real legal lines (RERA/GSTIN/CIN) in `references/footer.md`.
 - Brand voice: confident advisor, benefit-first, data-backed. E.g. *"The safest way to buy homes in {city}."* CTAs like *"Get a Callback Now"*, *"Book a free consultation"*. Indian market: phone-callback CTA beats email.
 
 Generate the whole page, then iterate.
@@ -107,6 +108,7 @@ CTA buttons: primary `.bg-brand-orange-normal .text-neutral-inverted` + rounded 
 | Color CSS + class names | `references/colors.css` |
 | Typography CSS + class names | `references/typography.css` |
 | Logo variants + when to use each | `references/logos.md` |
+| Footer structure + real legal lines | `references/footer.md` |
 
 ## Common mistakes
 
