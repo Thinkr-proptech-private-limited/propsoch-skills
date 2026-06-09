@@ -96,7 +96,9 @@ Anchors: orange-70 `#ff6d33` (primary CTA), orange-80 `#ff4b04` (accent), purple
 - **Body** `.para-{xsmall,small,medium,large}` (+ `-strong`) — 140% line-height.
 - **UI/labels** `.label-{xxsmall,xsmall,small,medium,large}` (+ `-strong`) — 110% line-height.
 
-Mapping: page H1/hero → `title-xxlarge`/`xlarge`; section H2 → `title-large`/`medium`; card H3 → `title-small`/`xsmall`; body → `para-medium`; fine print → `para-xsmall`; eyebrow/badge → `label-small-strong`.
+Mapping: page H1/hero → `title-xxlarge`/`xlarge`; section H2 → `title-large`/`medium`; card H3 → `title-small`/`xsmall`; body → `para-medium`; fine print → `para-xsmall`; eyebrow/badge → `label-small`.
+
+**Section eyebrow + H2 style (enforce on every section):** both **regular weight (400)** and **sentence case** — never bold, never uppercase, never letter-spaced. The eyebrow is orange (`text-brand-orange-normal`), regular, sentence case (e.g. "Frequently asked", not "FREQUENTLY ASKED"); the H2 is `coolgrey-100`, regular, `line-height:1.35`. Only the page H1/hero may go heavier (`font-weight:600`). If a page hand-rolls its own `.eyebrow`/`h2` CSS, set `font-weight:400; text-transform:none; letter-spacing:0` there too.
 
 ## Section catalog
 
