@@ -1,0 +1,98 @@
+/* ============================================================================
+ * PROPSOCH DESIGN SYSTEM — TYPOGRAPHY (plain CSS, no Tailwind, no build step)
+ * ============================================================================
+ * Font family: Archivo (load via Google Fonts <link>, weights 400/500/600/700).
+ * Mobile-first: base rule = mobile size; @media (min-width:1024px) = desktop.
+ *
+ * Classes:
+ *   .title-<size>   headings, line-height 110%   (xxlarge xlarge large medium small xsmall xxsmall)
+ *   .para-<size>    body,    line-height 140%     (xsmall small medium large) + .para-<size>-strong
+ *   .label-<size>   UI text, line-height 110%     (xxsmall xsmall small medium large) + -strong
+ * Source: propsoch-fe-v3/src/styles/{typography/typography.css, font.style.ts}.
+ * ============================================================================ */
+
+:root {
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-base-minus-2: 0.625rem;
+  --font-size-base-minus-1: 0.75rem;
+  --font-size-base-0: 0.875rem;
+  --font-size-base-plus-1: 1rem;
+  --font-size-base-plus-2: 1.125rem;
+  --font-size-base-plus-3: 1.375rem;
+  --font-size-base-plus-4: 1.5rem;
+  --font-size-base-plus-5: 2rem;
+  --font-size-base-plus-6: 2.5rem;
+  --font-size-base-plus-7: 4rem;
+  --font-size-mobile-base-minus-2: 0.5625rem;
+  --font-size-mobile-base-minus-1: 0.625rem;
+  --font-size-mobile-base-0: 0.75rem;
+  --font-size-mobile-base-plus-1: 0.875rem;
+  --font-size-mobile-base-plus-2: 1rem;
+  --font-size-mobile-base-plus-3: 1.25rem;
+  --font-size-mobile-base-plus-4: 1.375rem;
+  --font-size-mobile-base-plus-5: 1.5rem;
+  --font-size-mobile-base-plus-6: 2rem;
+  --font-size-mobile-base-plus-7: 2rem;
+}
+
+body { font-family: 'Archivo', system-ui, -apple-system, sans-serif; }
+
+/* ===== title (110%) ===== */
+.title-xxlarge { font-size: var(--font-size-mobile-base-plus-7); line-height: 110%; }
+@media (min-width:1024px){ .title-xxlarge { font-size: var(--font-size-base-plus-7); } }
+.title-xlarge { font-size: var(--font-size-mobile-base-plus-6); line-height: 110%; }
+@media (min-width:1024px){ .title-xlarge { font-size: var(--font-size-base-plus-6); } }
+.title-large { font-size: var(--font-size-mobile-base-plus-5); line-height: 110%; }
+@media (min-width:1024px){ .title-large { font-size: var(--font-size-base-plus-5); } }
+.title-medium { font-size: var(--font-size-mobile-base-plus-4); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .title-medium { font-size: var(--font-size-base-plus-4); } }
+.title-small { font-size: var(--font-size-mobile-base-plus-3); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .title-small { font-size: var(--font-size-base-plus-3); } }
+.title-xsmall { font-size: var(--font-size-mobile-base-plus-2); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .title-xsmall { font-size: var(--font-size-base-plus-2); } }
+.title-xxsmall { font-size: var(--font-size-mobile-base-plus-1); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .title-xxsmall { font-size: var(--font-size-base-plus-1); } }
+
+/* ===== para (140%) ===== */
+.para-xsmall { font-size: var(--font-size-mobile-base-minus-1); line-height: 140%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .para-xsmall { font-size: var(--font-size-base-minus-1); } }
+.para-small { font-size: var(--font-size-mobile-base-0); line-height: 140%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .para-small { font-size: var(--font-size-base-0); } }
+.para-medium { font-size: var(--font-size-mobile-base-plus-1); line-height: 140%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .para-medium { font-size: var(--font-size-base-plus-1); } }
+.para-large { font-size: var(--font-size-mobile-base-plus-2); line-height: 140%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .para-large { font-size: var(--font-size-base-plus-2); } }
+.para-xsmall-strong { font-size: var(--font-size-mobile-base-minus-1); line-height: 140%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .para-xsmall-strong { font-size: var(--font-size-base-minus-1); } }
+.para-small-strong { font-size: var(--font-size-mobile-base-0); line-height: 140%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .para-small-strong { font-size: var(--font-size-base-0); } }
+.para-medium-strong { font-size: var(--font-size-mobile-base-plus-1); line-height: 140%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .para-medium-strong { font-size: var(--font-size-base-plus-1); } }
+.para-large-strong { font-size: var(--font-size-mobile-base-plus-2); line-height: 140%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .para-large-strong { font-size: var(--font-size-base-plus-2); } }
+
+/* ===== label (110%) ===== */
+.label-xxsmall { font-size: var(--font-size-mobile-base-minus-2); line-height: 110%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .label-xxsmall { font-size: var(--font-size-base-minus-2); } }
+.label-xsmall { font-size: var(--font-size-mobile-base-minus-1); line-height: 110%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .label-xsmall { font-size: var(--font-size-base-minus-1); } }
+.label-small { font-size: var(--font-size-mobile-base-0); line-height: 110%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .label-small { font-size: var(--font-size-base-0); } }
+.label-medium { font-size: var(--font-size-mobile-base-plus-1); line-height: 110%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .label-medium { font-size: var(--font-size-base-plus-1); } }
+.label-large { font-size: var(--font-size-mobile-base-plus-2); line-height: 110%; font-weight: var(--font-weight-regular); }
+@media (min-width:1024px){ .label-large { font-size: var(--font-size-base-plus-2); } }
+.label-xxsmall-strong { font-size: var(--font-size-mobile-base-minus-2); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .label-xxsmall-strong { font-size: var(--font-size-base-minus-2); } }
+.label-xsmall-strong { font-size: var(--font-size-mobile-base-minus-1); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .label-xsmall-strong { font-size: var(--font-size-base-minus-1); } }
+.label-small-strong { font-size: var(--font-size-mobile-base-0); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .label-small-strong { font-size: var(--font-size-base-0); } }
+.label-medium-strong { font-size: var(--font-size-mobile-base-plus-1); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .label-medium-strong { font-size: var(--font-size-base-plus-1); } }
+.label-large-strong { font-size: var(--font-size-mobile-base-plus-2); line-height: 110%; font-weight: var(--font-weight-medium); }
+@media (min-width:1024px){ .label-large-strong { font-size: var(--font-size-base-plus-2); } }

@@ -6,7 +6,7 @@ Internal Claude Code skills for the Propsoch team, distributed as a plugin marke
 
 | Skill | What it does |
 |---|---|
-| **leadpages-landing-page** | Builds Propsoch marketing landing pages for LeadPages (HTML Pub) that follow the Propsoch design system — brand colors, Archivo typography, spacing tokens, `max-w-7xl`, mobile-responsive. Walks you from page purpose → section flow (Mermaid) → finished standalone HTML. |
+| **leadpages-landing-page** | Builds Propsoch marketing landing pages for LeadPages (HTML Pub) that follow the Propsoch design system — brand colors + Archivo typography as **plain CSS** (no build step), 1280px max width, mobile-responsive. Walks you from page purpose → section flow (Mermaid) → finished standalone HTML. |
 
 ## Install (Claude Code)
 
@@ -31,35 +31,33 @@ When this repo is updated, pull the latest into your installed copy:
 ```
 /plugin marketplace update propsoch-skills
 ```
-Then reload (`/plugin` → update the plugin if prompted). New token values, sections, or fixes flow through automatically — no reinstall needed.
+New colors, typography, or fixes flow through automatically — no reinstall needed.
 
 ## What's inside `leadpages-landing-page`
 
 ```
 skills/leadpages-landing-page/
-├── SKILL.md                     # behavior: purpose → diagram → edit → build → publish
+├── SKILL.md                # behavior: purpose → diagram → edit → build → publish
 └── references/
-    ├── tokens.css               # full Propsoch DS @theme (colors + type + spacing), verbatim
-    ├── colors.md                # semantic color classes (double-prefix rule)
-    ├── typography.md            # title/para/label class strings
-    ├── sections.md              # canonical section library + default flow + brand voice
-    ├── base-template.html       # standalone page skeleton (navbar/footer/sticky CTA)
-    └── logos/                   # 5 brand logo SVGs
+    ├── colors.css          # Propsoch palette + semantic color classes (plain CSS)
+    ├── typography.css       # Archivo title/para/label classes (plain CSS, responsive)
+    └── logos.md            # the 5 brand-kit logos + when to use each
 ```
 
 ### Design rules the skill enforces
-- Content width capped at `max-w-7xl` (1280px).
-- Mobile-first; `lg:` (1024px) for desktop.
-- Colors only via baked semantic tokens (`bg-bg-*`, `text-text-*`, `border-border-*`).
-- Typography only via the Archivo-based `title`/`para`/`label` scale.
+- Content width capped at **1280px** (`max-w-7xl`).
+- Mobile-first; `@media (min-width:1024px)` for desktop.
+- Colors only via `colors.css` classes (`.bg-*`, `.text-*`, `.border-*`, `.icon-*`).
+- Typography only via `typography.css` classes (`.title-*`, `.para-*`, `.label-*`).
 
 ### How the CSS works (no build step)
-Pages load the **Tailwind v4 browser CDN** and inline `tokens.css` inside `<style type="text/tailwindcss">`. Every design-system utility resolves in the browser, so the HTML is fully standalone and portable to LeadPages.
+The design system ships as **plain CSS** — `colors.css` and `typography.css` define CSS variables plus ready-to-use utility classes. Paste both into the page's `<style>` and use the class names. No Tailwind, no CDN, no runtime JS — fully standalone and portable to LeadPages.
 
-> ⚠ Tailwind v4 emits the **literal** token name. A token `--color-bg-brand-orange-normal` becomes the class `bg-bg-brand-orange-normal` (double prefix). This is intentional — see `references/colors.md`.
+### Logos
+The 5 Propsoch logo variants already live in the **LeadPages brand kit**. The skill references them rather than inlining SVG — see `references/logos.md` for which variant to use where.
 
 ## Maintaining
-Tokens are copied verbatim from `propsoch-fe-v3/src/styles/*`. When the design system changes there, regenerate `tokens.css`, bump the `version` in `.claude-plugin/marketplace.json` + `plugin.json`, and push. Installed users pick it up via `/plugin marketplace update`.
+`colors.css` / `typography.css` values are copied verbatim from `propsoch-fe-v3/src/styles/*`. When the design system changes there, regenerate them, bump `version` in `.claude-plugin/marketplace.json` + `plugin.json`, and push. Installed users pick it up via `/plugin marketplace update`.
 
 ## License
 MIT
