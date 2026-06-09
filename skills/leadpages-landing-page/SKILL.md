@@ -68,6 +68,7 @@ Ask: **"Add, remove, or reorder any section?"** Apply, re-draw the wireframe if 
 - Colors: `colors.css` classes only. Typography: `typography.css` classes only.
 - Logos: reference the brand-kit assets (see `references/logos.md`) — they already exist in the LeadPages brand kit; don't inline SVG.
 - Footer: paste `references/footer.css` into the page `<style>` and use its HTML pattern + real legal lines (RERA/GSTIN/CIN). Footer background is black.
+- Buttons: paste `references/buttons.css` and use `.btn .btn-<variant> .btn-<size>` for every CTA (don't hand-style buttons).
 - Brand voice: confident advisor, benefit-first, data-backed. E.g. *"The safest way to buy homes in {city}."* CTAs like *"Get a Callback Now"*, *"Book a free consultation"*. Indian market: phone-callback CTA beats email.
 
 Generate the whole page, then iterate.
@@ -99,7 +100,7 @@ Mapping: page H1/hero → `title-xxlarge`/`xlarge`; section H2 → `title-large`
 
 `navbar` (colored logo + CTA) · `hero` (headline + primary CTA, often dark/orange bg w/ `text-neutral-inverted`) · `trust / rating-grid` (ratings, review counts) · `featured-in` (press/partner logo strip) · `why-propsoch / USP grid` (3–6 icon cards, 1-col→3-col) · `feature / benefit blocks` (alternating image+copy) · `testimonials` (quote cards: avatar, name, city) · `process / how-it-works` (numbered steps) · `stats / counters` (big numbers) · `CTA poster band` (headline + button on orange/dark) · `FAQ` (use `<details>`/`<summary>` for no-JS accordion) · `lead-capture form` (name + phone + city) · `footer` (dark `bg-neutral-strongest`, inverted text) · `sticky / fixed CTA` (fixed bottom bar, mobile-only).
 
-CTA buttons: primary `.bg-brand-orange-normal .text-neutral-inverted` + rounded + `.label-medium-strong`; secondary `.border-brand-orange-normal .text-brand-orange-normal` on transparent.
+CTA buttons: use `references/buttons.css` classes — `.btn .btn-primary` (orange, default CTA), `.btn .btn-tertiary` (purple), `.btn .btn-outline` (bordered, on white), `.btn .btn-white` (on dark/photo bg). Size with `.btn-lg` / `.btn-xl`.
 
 ## Quick reference
 
@@ -109,6 +110,7 @@ CTA buttons: primary `.bg-brand-orange-normal .text-neutral-inverted` + rounded 
 | Typography CSS + class names | `references/typography.css` |
 | Logo variants + when to use each | `references/logos.md` |
 | Footer CSS + HTML pattern + real legal lines | `references/footer.css` |
+| Button CSS + variants/sizes (primary/tertiary/outline…) | `references/buttons.css` |
 
 ## Common mistakes
 
