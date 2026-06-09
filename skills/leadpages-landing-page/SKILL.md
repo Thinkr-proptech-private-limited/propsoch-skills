@@ -70,6 +70,8 @@ Ask: **"Add, remove, or reorder any section?"** Apply, re-draw the wireframe if 
 - Footer: paste `references/footer.css` into the page `<style>` and use its HTML pattern + real legal lines (RERA/GSTIN/CIN). Footer background is black.
 - Buttons: paste `references/buttons.css` and use `.btn .btn-<variant> .btn-<size>` for every CTA (don't hand-style buttons).
 - Support CTA banner: if the user wants a "Still have questions?"/help nudge, use `references/support-cta-banner.css` (purple-tint band, support avatar from the brand-kit library, CTA button). Standalone section — place after the FAQ, never inside it.
+- Trust (rating + stats): use `references/trust-stats.css` — white Google rating pill + 2-up stat cards (purple + green, decorative images from the brand-kit library). Numbers/labels are content; match the style.
+- Featured in: use `references/featured-in.css` — "Featured in" label + press-logo row (logos already in the brand-kit library). Static row by default; optional marquee snippet included.
 - FAQ: paste `references/faq.css` and match its **design exactly** (white/page-colored section bg, orange eyebrow + centered heading both regular weight, rounded-xl `<details>` items with a "+"→"×" toggle) — but **keep the user's own questions, answers, and heading copy**; faq.css text is placeholder only, never overwrite content. No JS. **Tabs ONLY when 2+ categories.** The FAQ ends after the accordion — **no support/"Still have questions?" banner** (that's a separate section, not FAQ).
 - Brand voice: confident advisor, benefit-first, data-backed. E.g. *"The safest way to buy homes in {city}."* CTAs like *"Get a Callback Now"*, *"Book a free consultation"*. Indian market: phone-callback CTA beats email.
 
@@ -117,6 +119,8 @@ CTA buttons: use `references/buttons.css` classes — `.btn .btn-primary` (orang
 | Button CSS + variants/sizes (primary/tertiary/outline…) | `references/buttons.css` |
 | FAQ CSS + no-JS accordion HTML pattern | `references/faq.css` |
 | Support CTA banner ("Still have questions?") | `references/support-cta-banner.css` |
+| Trust: Google rating pill + 2-up stat cards | `references/trust-stats.css` |
+| "Featured in" press-logo strip | `references/featured-in.css` |
 
 ## Common mistakes
 

@@ -1,0 +1,95 @@
+/* ============================================================================
+ * PROPSOCH DESIGN SYSTEM — FEATURED IN (plain CSS, no build step)
+ * ============================================================================
+ * The FeaturedIn press-logo strip (src/components/common/featured-in):
+ *   a centered "Featured in" label above a row of press/media logos.
+ * In the app it auto-scrolls (carousel); for a standalone LeadPages page use a
+ * static centered/wrapped row (no JS). Optional marquee snippet at the bottom.
+ *
+ * Style measured from the live render. The logo SET is content — swap per page;
+ * the layout/label STYLE stays exact.
+ *
+ * Depends on: colors.css, typography.css. Font: Archivo.
+ *
+ * ---- press logos (already in the LeadPages brand library) ------------------
+ * Business Standard : .../api/library/ind78nya6g52syw9tt37rvde
+ * Mint              : .../api/library/ebmrp2tug01mmtxw2ynnkfts
+ * Realty NXT        : .../api/library/vbyvp80xw1ae2kqepg7bj7yw
+ * ANI               : .../api/library/ehhc2ahyx2pm50aeqdw2zil7
+ * The Print         : .../api/library/tohoiyfmn94anwspr4jsus2y
+ * (host: https://ravi-agrawal-en9p.pubhtml.com  — also htmlpub.com/api/library/<id>)
+ *
+ * ---- HTML pattern ----------------------------------------------------------
+ * <section class="featured">
+ *   <div class="featured-inner">
+ *     <span class="featured-label">Featured in</span>
+ *     <div class="featured-row">
+ *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ind78nya6g52syw9tt37rvde" alt="Business Standard" />
+ *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ebmrp2tug01mmtxw2ynnkfts" alt="Mint" />
+ *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/vbyvp80xw1ae2kqepg7bj7yw" alt="Realty NXT" />
+ *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ehhc2ahyx2pm50aeqdw2zil7" alt="ANI" />
+ *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/tohoiyfmn94anwspr4jsus2y" alt="The Print" />
+ *     </div>
+ *   </div>
+ * </section>
+ * ============================================================================ */
+
+.featured {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.featured-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;                       /* gap-4 */
+  width: 100%;
+  max-width: 80rem;                /* breakpoint-xl */
+  padding: 2rem 1rem;              /* py-8 mobile */
+}
+
+.featured-label {                  /* para xs, normal, muted, centered */
+  font-size: 0.875rem;             /* 14px */
+  font-weight: 400;
+  color: var(--coolgrey-70);       /* #66677e */
+  text-align: center;
+}
+
+.featured-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;                     /* breathing room between logos */
+  width: 100%;
+}
+.featured-logo {
+  height: 1.875rem;                /* ~30px — logos normalized to row height */
+  width: auto;
+  max-width: 9rem;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+@media (min-width: 1024px) {
+  .featured-inner { padding: 3.5rem 1rem; }   /* xl:py-14 */
+  .featured-row { gap: 4rem; }
+}
+
+/* ---- OPTIONAL auto-scroll marquee (mirrors the app carousel) --------------
+ * Wrap the logos twice inside .featured-track for a seamless loop:
+ * <div class="featured-marquee"><div class="featured-track">…logos…logos…</div></div>
+ */
+.featured-marquee { width: 100%; overflow: hidden; }
+.featured-track {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: max-content;
+  animation: featured-scroll 30s linear infinite;
+}
+@keyframes featured-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

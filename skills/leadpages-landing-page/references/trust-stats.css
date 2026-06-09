@@ -1,0 +1,134 @@
+/* ============================================================================
+ * PROPSOCH DESIGN SYSTEM — TRUST / RATING + STATS (plain CSS, no build step)
+ * ============================================================================
+ * The RatingGrid section (src/app/campaigns/_shared/components/rating-grid.tsx):
+ *   1. a Google rating PILL (RatingBadge) — white rounded-full chip:
+ *      [G] 4.7 stars | by 138+ customers
+ *   2. a 2-up STAT card grid — purple card "1,367+ happy customers" + green
+ *      card "₹2,523+ Cr transactions advised", each with a decorative image
+ *      pinned bottom-right.
+ *
+ * Style measured from the live render. Numbers/labels are CONTENT — swap per
+ * page; the STYLE (pill, card colors, type sizes) must stay exact.
+ *
+ * Depends on: colors.css, typography.css. Font: Archivo.
+ *
+ * ---- section images (already in the LeadPages brand library) ---------------
+ * family : https://ravi-agrawal-en9p.pubhtml.com/api/library/vr7gfewmxp0gsko58sjtjjae
+ * house  : https://ravi-agrawal-en9p.pubhtml.com/api/library/yhdl6n21q5jb3mk2mvs4s548
+ * (also serve at https://htmlpub.com/api/library/<id>)
+ *
+ * ---- HTML pattern ----------------------------------------------------------
+ * <section class="trust">
+ *   <div class="trust-inner">
+ *     <!-- rating pill -->
+ *     <div class="rating-pill">
+ *       <img src="{{GOOGLE_ICON}}" alt="Google" width="20" height="20" />
+ *       <i class="rating-score">4.7 stars</i>
+ *       <span class="rating-sep"></span>
+ *       <span class="rating-by">by 138+ customers</span>
+ *     </div>
+ *
+ *     <!-- 2-up stats -->
+ *     <div class="stat-grid">
+ *       <div class="stat-card stat-card--purple">
+ *         <div class="stat-num">1,367+</div>
+ *         <div class="stat-label">happy customers</div>
+ *         <img class="stat-img" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/vr7gfewmxp0gsko58sjtjjae" alt="" />
+ *       </div>
+ *       <div class="stat-card stat-card--green">
+ *         <div class="stat-num">₹2,523+ Cr</div>
+ *         <div class="stat-label">transactions advised</div>
+ *         <img class="stat-img" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/yhdl6n21q5jb3mk2mvs4s548" alt="" />
+ *       </div>
+ *     </div>
+ *   </div>
+ * </section>
+ * ============================================================================ */
+
+.trust {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2.5rem 1rem 0;          /* mt-10 region */
+}
+.trust-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 64rem;                /* max-w-screen-lg */
+}
+
+/* rating pill — white rounded-full chip */
+.rating-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;                   /* space-x-2.5 */
+  background: var(--coolgrey-0);   /* white */
+  border-radius: 9999px;           /* rounded-full */
+  padding: 0.5rem 1rem;            /* py-2 px-4 */
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  margin: 2.5rem 0 1.5rem;         /* mt-10 mb-6 */
+}
+.rating-score {                    /* para xs, semibold, dark */
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.75rem;              /* 12px */
+  color: var(--coolgrey-100);
+}
+.rating-by {                       /* para xs, medium, muted */
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--coolgrey-70);
+}
+.rating-sep {
+  width: 1px;
+  height: 1rem;
+  background: var(--coolgrey-20);
+}
+
+/* stat grid — 2 columns, gap 24px */
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;                     /* gap-6 */
+  width: 100%;
+  margin-bottom: 5rem;             /* mb-20 */
+}
+.stat-card {
+  position: relative;
+  border-radius: 0.75rem;          /* rounded-xl */
+  padding: 1rem;                   /* p-4 mobile */
+  overflow: hidden;
+  min-height: 9rem;
+}
+.stat-card--purple { background: var(--purple-10); }   /* tertiarylight #f6f0ff */
+.stat-card--green  { background: var(--green-20);  }   /* successlight */
+
+.stat-num {                        /* title md, 40px desktop, semibold */
+  font-weight: 600;
+  font-size: 1.75rem;              /* 28px mobile */
+  line-height: 1.1;
+  color: var(--coolgrey-100);
+}
+.stat-label {                      /* para sm, normal, muted */
+  font-size: 0.875rem;             /* 14px */
+  color: var(--coolgrey-70);
+  white-space: nowrap;
+}
+.stat-img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 7rem;                     /* max-w-28 mobile */
+  height: auto;
+  pointer-events: none;
+}
+
+@media (min-width: 1024px) {
+  .stat-card { padding: 1.5rem; }          /* xl:p-6 */
+  .stat-num { font-size: 2.5rem; }         /* 40px */
+  .stat-img { width: 12rem; }              /* xl:max-w-48 */
+}
