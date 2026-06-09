@@ -10,12 +10,6 @@ Internal Claude Code skills for the Propsoch team, distributed as a plugin marke
 
 ## Install (Claude Code)
 
-**Step 0 — one-time: authenticate to the org.** This repo is private, so Claude Code must be able to clone it. In your terminal:
-```
-gh auth login
-```
-Pick GitHub.com → HTTPS → your account in the `Thinkr-proptech-private-limited` org. (Already logged in? `gh auth status` to confirm.)
-
 **Step 1 — add the marketplace.** Inside Claude Code, run:
 ```
 /plugin marketplace add Thinkr-proptech-private-limited/propsoch-skills
