@@ -4,6 +4,10 @@ These logos **already exist in the Propsoch LeadPages brand kit** — do not re-
 
 Brand kit: **Propsoch** (default). Primary `#FF6D33`, secondary `#9A4AFB`, text `#212130`.
 
+## Default logo
+
+Unless the user asks for a different one, **always use `propsoch-logo-icon-text-colored.svg`** (the orange + dark "Propsoch" lockup) as the default logo everywhere a logo/icon is placed — navbar, headers, sections. Only switch variants when the user explicitly requests it, or when contrast demands it (e.g. dark/photo background → white variant). Do not pick a different default on your own.
+
 ## Variants
 
 | Logo | Composition | Colors | Use on |
