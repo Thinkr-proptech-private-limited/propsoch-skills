@@ -69,7 +69,7 @@ Ask: **"Add, remove, or reorder any section?"** Apply, re-draw the wireframe if 
 - Logos: **default to `propsoch-logo-icon-text-colored.svg`** everywhere a logo/icon goes, unless the user asks for a different variant (or contrast forces the white one). Reference the brand-kit assets (see `references/logos.md`); don't inline SVG.
 - Footer: paste `references/footer.css` into the page `<style>` and use its HTML pattern + real legal lines (RERA/GSTIN/CIN). Footer background is black.
 - Buttons: paste `references/buttons.css` and use `.btn .btn-<variant> .btn-<size>` for every CTA (don't hand-style buttons).
-- FAQ: paste `references/faq.css` and use its no-JS `<details>/<summary>` accordion pattern (eyebrow + heading + items + support banner). Items are white with a "+" toggle (→ "×" on open). **Render the segmented tab control ONLY when there are 2+ categories** — a single-category FAQ shows just the list, no tabs.
+- FAQ: paste `references/faq.css` and match its **design exactly** (white/page-colored section bg, orange eyebrow + centered heading both regular weight, rounded-xl `<details>` items with a "+"→"×" toggle) — but **keep the user's own questions, answers, and heading copy**; faq.css text is placeholder only, never overwrite content. No JS. **Tabs ONLY when 2+ categories.** The FAQ ends after the accordion — **no support/"Still have questions?" banner** (that's a separate section, not FAQ).
 - Brand voice: confident advisor, benefit-first, data-backed. E.g. *"The safest way to buy homes in {city}."* CTAs like *"Get a Callback Now"*, *"Book a free consultation"*. Indian market: phone-callback CTA beats email.
 
 Generate the whole page, then iterate.

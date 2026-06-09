@@ -6,42 +6,37 @@
  *   eyebrow ("Frequently Asked Questions", orange) + centered H2
  *   → OPTIONAL category tabs (segmented pill) — ONLY when 2+ categories
  *   → accordion: white rounded-xl bordered items, "+" toggle that becomes "×"
- *   → "Still have questions?" purple-tint support banner with a CTA
  *
  * Accordion uses native <details>/<summary> — NO JS. Tabs (multi-category)
  * need the tiny JS snippet at the bottom of this comment.
  *
- * ⚠ SINGLE-CATEGORY FAQ: do NOT render the tabs (.faq-tabs) at all — just the
- * eyebrow + heading + one .faq-list. Tabs only exist to switch BETWEEN
- * categories; with one category they must be omitted.
+ * ⚠ DESIGN reference, not content. Match this LOOK exactly (page-colored/white
+ * background, orange eyebrow + centered heading both REGULAR weight, white
+ * rounded-xl "+" accordion items). KEEP the user's own questions, answers, and
+ * heading copy — the text below is placeholder only; never overwrite content.
  *
- * Depends on: colors.css, typography.css, buttons.css. Font: Archivo.
+ * ⚠ SINGLE-CATEGORY FAQ: do NOT render the tabs (.faq-tabs) — just the eyebrow
+ * + heading + one .faq-list. Tabs only switch BETWEEN categories.
+ *
+ * ⚠ NO support/"Still have questions?" banner — that is a separate section,
+ * NOT part of the FAQ. The FAQ ends after the accordion list.
+ *
+ * Depends on: colors.css, typography.css. Font: Archivo.
  *
  * ---- HTML pattern (single category, no tabs) -------------------------------
  * <section class="faq" id="FAQs">
  *   <div class="faq-inner">
  *     <div class="faq-head">
- *       <span class="faq-eyebrow">Frequently Asked Questions</span>
- *       <h2 class="faq-title">99% of your queries should get answered here,
- *         for others, you can always talk to us</h2>
+ *       <span class="faq-eyebrow">{{EYEBROW — e.g. Frequently Asked Questions}}</span>
+ *       <h2 class="faq-title">{{HEADING — user's copy}}</h2>
  *     </div>
  *
  *     <div class="faq-list">
  *       <details class="faq-item">
- *         <summary class="faq-q">What is Guided Home Buying? How does it work?</summary>
- *         <div class="faq-a">Answer text (HTML allowed).</div>
+ *         <summary class="faq-q">{{QUESTION — user's copy}}</summary>
+ *         <div class="faq-a">{{ANSWER — user's copy, HTML allowed}}</div>
  *       </details>
- *       <!-- repeat per question -->
- *     </div>
- *
- *     <div class="faq-banner">
- *       <img src="{{SUPPORT_IMG}}" alt="Propsoch Support" width="84" height="84" />
- *       <div class="faq-banner-text">
- *         <p class="faq-banner-title">Still have questions?</p>
- *         <p class="faq-banner-desc">Can't find the answer you are looking for?
- *           We are always here for you</p>
- *       </div>
- *       <a class="btn btn-secondary btn-lg faq-banner-cta" href="#book">Book Free Appointment</a>
+ *       <!-- repeat per user-provided question -->
  *     </div>
  *   </div>
  * </section>
@@ -66,7 +61,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0 1rem 3.5rem;          /* pb-14 mobile */
+  padding: 3.5rem 1rem;            /* pb-14 mobile */
+  background: var(--coolgrey-0);   /* page background (white) — no grey band */
 }
 
 .faq-inner {
@@ -85,18 +81,18 @@
   align-items: center;
   gap: 1.5rem;                     /* gap-6 */
 }
-.faq-eyebrow {                     /* para sm, orange */
+.faq-eyebrow {                     /* para sm, orange — regular weight, sentence case */
   color: var(--orange-70);
   font-size: 1rem;                 /* 16px */
-  font-weight: 400;
+  font-weight: 400;                /* regular */
   line-height: 1.4;
 }
-.faq-title {                       /* title() default — ~40px desktop, regular */
+.faq-title {                       /* title() — regular weight, centered */
   max-width: 56rem;                /* max-w-4xl (896px) */
   text-align: center;
-  color: var(--coolgrey-100);
-  font-weight: 400;
-  line-height: 1.1;
+  color: var(--coolgrey-100);      /* #212130 */
+  font-weight: 400;                /* regular */
+  line-height: 1.35;
   font-size: 1.5rem;               /* 24px mobile */
 }
 
@@ -105,7 +101,7 @@
   display: inline-flex;
   gap: 0.5rem;                     /* gap-2 */
   padding: 0.5rem;                 /* p-2 */
-  background: var(--coolgrey-10);  /* rgb(242,242,242) */
+  background: var(--coolgrey-10);  /* light track on the white section */
   border-radius: 0.75rem;          /* rounded-xl */
   max-width: 100%;
   overflow-x: auto;
@@ -175,34 +171,14 @@
 .faq-item[open] .faq-q::after { transform: rotate(45deg); }   /* + → × */
 
 .faq-a {
-  padding: 0 1.5rem 1.5rem;        /* px-6, pb */
+  margin-top: 0.75rem;             /* mt-3 */
+  padding: 0 1.5rem 1rem;          /* px-6 pb-4 */
   color: var(--coolgrey-90);       /* para normal */
   font-size: 1rem;
   line-height: 1.4;
 }
 
-/* support banner — purple tint */
-.faq-banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  width: 100%;
-  max-width: 56rem;                /* max-w-4xl */
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  background: var(--purple-10);    /* tertiarylight */
-}
-.faq-banner img { width: 84px; height: 84px; flex-shrink: 0; }
-.faq-banner-text { display: flex; flex-direction: column; gap: 0.25rem; }
-.faq-banner-title { color: var(--coolgrey-100); font-size: 1.25rem; font-weight: 500; line-height: 1.1; }
-.faq-banner-desc  { color: var(--coolgrey-90); font-size: 0.875rem; line-height: 1.4; }
-
 @media (min-width: 1024px) {
-  .faq { padding: 6rem 0; }                 /* xl:py-24 */
+  .faq { padding: 6rem 1rem; }              /* xl:py-24 */
   .faq-title { font-size: 2.5rem; }         /* 40px desktop */
-  .faq-banner { flex-direction: row; justify-content: space-between; text-align: left; }
-  .faq-banner-text { align-items: flex-start; }
-  .faq-banner-cta { width: auto; }
 }
