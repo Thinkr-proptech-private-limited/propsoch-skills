@@ -6,24 +6,33 @@ Internal Claude Code skills for the Propsoch team, distributed as a plugin marke
 
 | Skill | What it does |
 |---|---|
-| **leadpages-landing-page** | Builds Propsoch marketing landing pages for LeadPages (HTML Pub) that follow the Propsoch design system — brand colors + Archivo typography as **plain CSS** (no build step), 1280px max width, mobile-responsive. Walks you from page purpose → section flow (Mermaid) → finished standalone HTML. |
+| **leadpages-landing-page** | Builds Propsoch marketing landing pages for LeadPages (HTML Pub) that follow the Propsoch design system — brand colors + Archivo typography as **plain CSS** (no build step), 1280px max width, mobile-responsive. Walks you from page purpose → section-flow wireframe → finished standalone HTML. |
 
 ## Install (Claude Code)
 
-From within Claude Code, add the marketplace once:
+**Step 0 — one-time: authenticate to the org.** This repo is private, so Claude Code must be able to clone it. In your terminal:
+```
+gh auth login
+```
+Pick GitHub.com → HTTPS → your account in the `Thinkr-proptech-private-limited` org. (Already logged in? `gh auth status` to confirm.)
+
+**Step 1 — add the marketplace.** Inside Claude Code, run:
 ```
 /plugin marketplace add Thinkr-proptech-private-limited/propsoch-skills
 ```
+This registers the repo as a plugin source (clones it locally).
 
-Then install the skill:
+**Step 2 — install the skill:**
 ```
 /plugin install leadpages-landing-page@propsoch-skills
 ```
 
-The skill is now available across all your projects. Invoke it by asking, e.g.:
+**Step 3 — verify.** Run `/plugin` and confirm `leadpages-landing-page` is listed/enabled. (Restart Claude Code if it doesn't appear.)
+
+**Step 4 — use it.** In any project, just ask:
 > "Make a Propsoch LeadPages landing page for our Bangalore home-buying campaign."
 
-> **Private repo:** authenticate `gh`/git to the `Thinkr-proptech-private-limited` org first, or Claude Code can't clone the marketplace.
+The skill activates automatically and walks you through purpose → wireframe → build.
 
 ## Getting updates
 

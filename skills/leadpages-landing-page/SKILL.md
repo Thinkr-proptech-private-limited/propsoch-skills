@@ -22,23 +22,44 @@ Before anything else:
 
 Wait for the answer. Don't assume a layout yet.
 
-### 2. Propose a section flow as a Mermaid diagram
-Pick a sensible sequence from the **section catalog** below and render it **in chat** as a Mermaid `flowchart TD` (top→down = page order), one-line justification per section.
+### 2. Propose a section flow as a wireframe diagram
+Pick a sensible sequence from the **section catalog** below and render it **in chat** as an **ASCII wireframe** — stacked boxes, top→down = page order, sketching each section's rough layout (columns, image vs text, button). One-line justification per section underneath. This shows the user the page shape, not just a list.
 
-```mermaid
-flowchart TD
-  A[Navbar + CTA] --> B[Hero: headline + primary CTA]
-  B --> C[Trust / rating grid]
-  C --> D[Why Propsoch — USP grid]
-  D --> E[Testimonials]
-  E --> F[How it works — steps]
-  F --> G[CTA poster band]
-  G --> H[FAQ]
-  H --> I[Footer]
+```
+┌──────────────────────────────────────────────┐
+│ [logo]                          [ CTA button ] │  Navbar — sticky, logo + primary CTA
+├──────────────────────────────────────────────┤
+│                                                │
+│   BIG HEADLINE                                 │  Hero — headline + subhead + CTA
+│   subhead line                                 │       (dark/orange bg, inverted text)
+│   [ Get a Callback Now ]                       │
+│                                                │
+├──────────────────────────────────────────────┤
+│   ★★★★★  4.9   |  2000+ homes  |  Google      │  Trust — ratings / counts
+├──────────────────────────────────────────────┤
+│   Why Propsoch                                 │
+│   ┌────┐   ┌────┐   ┌────┐                     │  USP grid — 1-col mobile → 3-col desktop
+│   │icon│   │icon│   │icon│                     │
+│   └────┘   └────┘   └────┘                     │
+├──────────────────────────────────────────────┤
+│   “quote…”   “quote…”   “quote…”               │  Testimonials — quote cards (name, city)
+├──────────────────────────────────────────────┤
+│   1 ──→ 2 ──→ 3 ──→ 4                           │  How it works — numbered steps
+├──────────────────────────────────────────────┤
+│   Ready to start?        [ Book a call ]       │  CTA poster band — orange/dark
+├──────────────────────────────────────────────┤
+│   ▸ Question 1                                 │  FAQ — accordion (<details>)
+│   ▸ Question 2                                 │
+├──────────────────────────────────────────────┤
+│ [logo]   links    contact    legal             │  Footer — dark bg, inverted text
+└──────────────────────────────────────────────┘
+        [ sticky CTA bar — mobile only ]
 ```
 
+Adapt the boxes to the actual sections chosen for the brief — add/drop rows to match.
+
 ### 3. Edit loop
-Ask: **"Add, remove, or reorder any section?"** Apply, re-render the diagram if changed, repeat until confirmed.
+Ask: **"Add, remove, or reorder any section?"** Apply, re-draw the wireframe if changed, repeat until confirmed.
 
 ### 4. Build the page
 - `<head>`: Archivo `<link>`, then `<style>` containing the **full contents of `references/colors.css` and `references/typography.css`**, then a tiny page `<style>` for layout helpers (e.g. `.container-7xl`).
