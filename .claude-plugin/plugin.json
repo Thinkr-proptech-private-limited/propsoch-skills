@@ -1,7 +1,7 @@
 {
   "name": "leadpages-landing-page",
   "description": "Build Propsoch marketing landing pages for LeadPages that follow the Propsoch design system — brand colors + Archivo typography as plain CSS, 1280px max width, mobile-responsive standalone HTML.",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "author": {
     "name": "Propsoch"
   },
