@@ -1,0 +1,105 @@
+/* ============================================================================
+ * PROPSOCH DESIGN SYSTEM — SUPPORT CTA BANNER (plain CSS, no build step)
+ * ============================================================================
+ * The "Still have questions?" support banner (FAQBanner in
+ * src/app/campaigns/_shared/components/faq.tsx, built on the Banner UI
+ * primitive). A purple-tint rounded-xl band: support avatar + title + subtext
+ * on the left, a CTA button on the right.
+ *
+ * This is a STANDALONE CTA section — NOT part of the FAQ accordion. Place it
+ * after the FAQ (or anywhere a "talk to us" nudge fits).
+ *
+ * Layout: stacked + centered on mobile → row, space-between on desktop (xl).
+ *
+ * Depends on: colors.css, typography.css, buttons.css. Font: Archivo.
+ *
+ * ---- support image (already in the LeadPages brand kit) --------------------
+ * Use the library asset — don't re-upload:
+ *   https://ravi-agrawal-en9p.pubhtml.com/api/library/y03u1fx36o5bd79mdcboi5qo
+ *   (asset ID y03u1fx36o5bd79mdcboi5qo, "Propsoch Support (FAQ banner avatar)",
+ *    org Ravi Agrawal). Also serves at https://htmlpub.com/api/library/<id>.
+ *
+ * ---- HTML pattern ----------------------------------------------------------
+ * <section class="cta-banner-wrap">
+ *   <div class="cta-banner">
+ *     <div class="cta-banner-content">
+ *       <img class="cta-banner-icon"
+ *            src="https://ravi-agrawal-en9p.pubhtml.com/api/library/y03u1fx36o5bd79mdcboi5qo"
+ *            alt="Propsoch Support" width="84" height="84" />
+ *       <div class="cta-banner-text">
+ *         <p class="cta-banner-title">{{TITLE — e.g. Still have questions?}}</p>
+ *         <p class="cta-banner-desc">{{SUBTEXT — user's copy}}</p>
+ *       </div>
+ *     </div>
+ *     <a class="btn btn-secondary btn-lg cta-banner-btn" href="#book">{{CTA — user's copy}}</a>
+ *   </div>
+ * </section>
+ *
+ * ⚠ Match the STYLE exactly (purple-10 band, 32px padding, rounded-xl, avatar,
+ * semibold title 24→32px, 14px muted subtext, dark secondary CTA). The CONTENT
+ * (title/subtext/CTA text) can differ per page — text above is placeholder.
+ * ============================================================================ */
+
+.cta-banner-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.cta-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;                       /* gap-4 */
+  width: 100%;
+  max-width: 56rem;                /* max-w-4xl */
+  padding: 2rem;                   /* p-8 */
+  border-radius: 0.75rem;          /* rounded-xl */
+  background: var(--purple-10);    /* primarylight / tertiarylight tint */
+  overflow: hidden;
+}
+
+.cta-banner-content {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.cta-banner-icon {
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.cta-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;                     /* space-y-2 */
+}
+
+.cta-banner-title {                /* title, semibold */
+  color: var(--coolgrey-100);
+  font-size: 1.5rem;               /* 24px mobile */
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.cta-banner-desc {                 /* para sm, normal */
+  color: var(--coolgrey-70);       /* #66677e */
+  font-size: 0.875rem;             /* 14px */
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (min-width: 1024px) {
+  .cta-banner { flex-direction: row; justify-content: space-between; }
+  .cta-banner-content { flex-direction: row; text-align: left; }
+  .cta-banner-text { align-items: flex-start; }
+  .cta-banner-title { font-size: 2rem; }   /* 32px desktop */
+}

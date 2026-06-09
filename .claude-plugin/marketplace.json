@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Propsoch's internal Claude skills — design-system-aware tooling for the team.",
-    "version": "1.6.1"
+    "version": "1.7.0"
   },
   "plugins": [
     {
       "name": "leadpages-landing-page",
       "source": "./",
       "description": "Build Propsoch marketing landing pages for LeadPages that follow the Propsoch design system (brand colors, Archivo typography, 1280px max width, mobile-responsive; plain CSS).",
-      "version": "1.6.1",
+      "version": "1.7.0",
       "author": {
         "name": "Propsoch"
       },

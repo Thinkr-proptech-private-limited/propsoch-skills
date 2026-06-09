@@ -69,6 +69,7 @@ Ask: **"Add, remove, or reorder any section?"** Apply, re-draw the wireframe if 
 - Logos: **default to `propsoch-logo-icon-text-colored.svg`** everywhere a logo/icon goes, unless the user asks for a different variant (or contrast forces the white one). Reference the brand-kit assets (see `references/logos.md`); don't inline SVG.
 - Footer: paste `references/footer.css` into the page `<style>` and use its HTML pattern + real legal lines (RERA/GSTIN/CIN). Footer background is black.
 - Buttons: paste `references/buttons.css` and use `.btn .btn-<variant> .btn-<size>` for every CTA (don't hand-style buttons).
+- Support CTA banner: if the user wants a "Still have questions?"/help nudge, use `references/support-cta-banner.css` (purple-tint band, support avatar from the brand-kit library, CTA button). Standalone section — place after the FAQ, never inside it.
 - FAQ: paste `references/faq.css` and match its **design exactly** (white/page-colored section bg, orange eyebrow + centered heading both regular weight, rounded-xl `<details>` items with a "+"→"×" toggle) — but **keep the user's own questions, answers, and heading copy**; faq.css text is placeholder only, never overwrite content. No JS. **Tabs ONLY when 2+ categories.** The FAQ ends after the accordion — **no support/"Still have questions?" banner** (that's a separate section, not FAQ).
 - Brand voice: confident advisor, benefit-first, data-backed. E.g. *"The safest way to buy homes in {city}."* CTAs like *"Get a Callback Now"*, *"Book a free consultation"*. Indian market: phone-callback CTA beats email.
 
@@ -113,6 +114,7 @@ CTA buttons: use `references/buttons.css` classes — `.btn .btn-primary` (orang
 | Footer CSS + HTML pattern + real legal lines | `references/footer.css` |
 | Button CSS + variants/sizes (primary/tertiary/outline…) | `references/buttons.css` |
 | FAQ CSS + no-JS accordion HTML pattern | `references/faq.css` |
+| Support CTA banner ("Still have questions?") | `references/support-cta-banner.css` |
 
 ## Common mistakes
 
