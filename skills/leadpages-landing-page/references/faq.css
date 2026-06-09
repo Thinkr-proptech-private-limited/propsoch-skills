@@ -1,55 +1,58 @@
 /* ============================================================================
  * PROPSOCH DESIGN SYSTEM — FAQ (plain CSS, no build step)
  * ============================================================================
- * From src/components/layout/landing-page/faq.tsx. Structure:
- *   eyebrow ("Frequently Asked Questions") + centered H2
- *   → optional category tabs
- *   → accordion of rounded-xl bordered items (question / answer)
- *   → "Still have questions?" support banner (purple-tint) with a CTA
+ * Matches the live campaign FAQ (src/app/campaigns/_shared/components/faq.tsx),
+ * verified against the rendered page. Structure:
+ *   eyebrow ("Frequently Asked Questions", orange) + centered H2
+ *   → OPTIONAL category tabs (segmented pill) — ONLY when 2+ categories
+ *   → accordion: white rounded-xl bordered items, "+" toggle that becomes "×"
+ *   → "Still have questions?" purple-tint support banner with a CTA
  *
- * The real component uses a JS accordion + tabs. For a standalone LeadPages
- * page, the accordion is built with native <details>/<summary> (NO JS).
- * Tabs are optional — include them only for many categories; tiny JS snippet
- * is at the bottom of this comment. Single-category FAQ needs no tabs/JS.
+ * Accordion uses native <details>/<summary> — NO JS. Tabs (multi-category)
+ * need the tiny JS snippet at the bottom of this comment.
+ *
+ * ⚠ SINGLE-CATEGORY FAQ: do NOT render the tabs (.faq-tabs) at all — just the
+ * eyebrow + heading + one .faq-list. Tabs only exist to switch BETWEEN
+ * categories; with one category they must be omitted.
  *
  * Depends on: colors.css, typography.css, buttons.css. Font: Archivo.
  *
- * ---- HTML pattern (no-JS accordion) ----------------------------------------
+ * ---- HTML pattern (single category, no tabs) -------------------------------
  * <section class="faq" id="FAQs">
  *   <div class="faq-inner">
  *     <div class="faq-head">
- *       <span class="para-small text-brand-orange-normal">Frequently Asked Questions</span>
- *       <h2 class="title-large faq-title">99% of your queries should get answered here,
+ *       <span class="faq-eyebrow">Frequently Asked Questions</span>
+ *       <h2 class="faq-title">99% of your queries should get answered here,
  *         for others, you can always talk to us</h2>
  *     </div>
  *
  *     <div class="faq-list">
  *       <details class="faq-item">
- *         <summary class="faq-q"><span class="para-small-strong">Question text?</span></summary>
- *         <div class="faq-a para-small text-neutral-normal">Answer text (HTML allowed).</div>
+ *         <summary class="faq-q">What is Guided Home Buying? How does it work?</summary>
+ *         <div class="faq-a">Answer text (HTML allowed).</div>
  *       </details>
  *       <!-- repeat per question -->
  *     </div>
  *
- *     <!-- support banner -->
  *     <div class="faq-banner">
  *       <img src="{{SUPPORT_IMG}}" alt="Propsoch Support" width="84" height="84" />
  *       <div class="faq-banner-text">
- *         <p class="title-small">Still have questions?</p>
- *         <p class="para-small text-neutral-normal">Can't find the answer you are looking for?
+ *         <p class="faq-banner-title">Still have questions?</p>
+ *         <p class="faq-banner-desc">Can't find the answer you are looking for?
  *           We are always here for you</p>
  *       </div>
- *       <a class="btn btn-secondary btn-lg" href="#book">Book Free Appointment</a>
+ *       <a class="btn btn-secondary btn-lg faq-banner-cta" href="#book">Book Free Appointment</a>
  *     </div>
  *   </div>
  * </section>
  *
- * ---- optional tabs (multi-category) ----------------------------------------
+ * ---- multi-category: add tabs + per-category lists --------------------------
  * <div class="faq-tabs" role="tablist">
- *   <button class="faq-tab is-active" data-tab="general">General</button>
- *   <button class="faq-tab" data-tab="pricing">Pricing</button>
+ *   <button class="faq-tab is-active" data-tab="about">About the Service</button>
+ *   <button class="faq-tab" data-tab="fees">Fees</button>
  * </div>
- * ... give each .faq-list a data-panel="general|pricing" and toggle with:
+ * <div class="faq-list" data-panel="about"> …items… </div>
+ * <div class="faq-list" data-panel="fees" hidden> …items… </div>
  * <script>
  *   document.querySelectorAll('.faq-tab').forEach(t=>t.onclick=()=>{
  *     document.querySelectorAll('.faq-tab').forEach(x=>x.classList.toggle('is-active',x===t));
@@ -63,46 +66,84 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0 1rem 3.5rem;
+  padding: 0 1rem 3.5rem;          /* pb-14 mobile */
 }
 
 .faq-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3.5rem;
+  gap: 3.5rem;                     /* gap-14 */
   width: 100%;
-  max-width: 80rem;          /* 1280px */
+  max-width: 80rem;                /* breakpoint-xl */
 }
 
+/* head */
 .faq-head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.5rem;                     /* gap-6 */
 }
-
-.faq-title {
-  max-width: 56rem;
+.faq-eyebrow {                     /* para sm, orange */
+  color: var(--orange-70);
+  font-size: 1rem;                 /* 16px */
+  font-weight: 400;
+  line-height: 1.4;
+}
+.faq-title {                       /* title() default — ~40px desktop, regular */
+  max-width: 56rem;                /* max-w-4xl (896px) */
   text-align: center;
   color: var(--coolgrey-100);
+  font-weight: 400;
+  line-height: 1.1;
+  font-size: 1.5rem;               /* 24px mobile */
 }
 
+/* segmented pill tabs (ONLY when 2+ categories) */
+.faq-tabs {
+  display: inline-flex;
+  gap: 0.5rem;                     /* gap-2 */
+  padding: 0.5rem;                 /* p-2 */
+  background: var(--coolgrey-10);  /* rgb(242,242,242) */
+  border-radius: 0.75rem;          /* rounded-xl */
+  max-width: 100%;
+  overflow-x: auto;
+}
+.faq-tab {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  color: var(--coolgrey-60);       /* muted */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;         /* 12px 24px */
+  white-space: nowrap;
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.faq-tab.is-active {
+  background: var(--coolgrey-0);   /* white */
+  color: var(--orange-70);         /* orange */
+  box-shadow: 0 1px 2px rgba(0,0,0,.06);
+}
+
+/* list */
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem;                       /* gap-4 */
   width: 100%;
-  max-width: 56rem;          /* xl:max-w-4xl */
-  margin-top: 1rem;
+  max-width: 56rem;                /* xl:max-w-4xl */
+  margin-top: 1rem;                /* mt-4 */
 }
 
-/* accordion item — rounded-xl bordered */
+/* accordion item — white, rounded-xl, light border */
 .faq-item {
   border: 1px solid var(--coolgrey-20);   /* lightborder */
   border-radius: 0.75rem;                  /* rounded-xl */
+  background: var(--coolgrey-0);           /* white */
   overflow: hidden;
-  background: var(--coolgrey-0);
 }
 
 .faq-q {
@@ -110,29 +151,34 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.5rem;            /* p-6 */
+  padding: 1.5rem;                 /* p-6 */
   cursor: pointer;
   list-style: none;
   text-align: left;
   color: var(--coolgrey-100);
+  font-size: 1rem;                 /* 16px */
+  font-weight: 400;
+  line-height: 1.4;
 }
 .faq-q::-webkit-details-marker { display: none; }
 
-/* chevron */
+/* "+" toggle that rotates to "×" when open (matches CrossIcon rotate-45 → -135) */
 .faq-q::after {
-  content: "";
-  width: 0.6rem;
-  height: 0.6rem;
-  border-right: 2px solid var(--coolgrey-60);
-  border-bottom: 2px solid var(--coolgrey-60);
-  transform: rotate(45deg);
-  transition: transform .2s ease;
+  content: "+";
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 400;
+  color: #292d32;
   flex-shrink: 0;
+  transition: transform .2s ease;
 }
-.faq-item[open] .faq-q::after { transform: rotate(-135deg); }
+.faq-item[open] .faq-q::after { transform: rotate(45deg); }   /* + → × */
 
 .faq-a {
-  padding: 0 1.5rem 1.5rem;   /* px-6, content below trigger */
+  padding: 0 1.5rem 1.5rem;        /* px-6, pb */
+  color: var(--coolgrey-90);       /* para normal */
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 /* support banner — purple tint */
@@ -143,39 +189,20 @@
   gap: 1rem;
   text-align: center;
   width: 100%;
-  max-width: 56rem;
+  max-width: 56rem;                /* max-w-4xl */
   padding: 1.5rem;
   border-radius: 0.75rem;
-  background: var(--purple-10);   /* tertiarylight */
+  background: var(--purple-10);    /* tertiarylight */
 }
-.faq-banner img { width: 84px; height: 84px; }
+.faq-banner img { width: 84px; height: 84px; flex-shrink: 0; }
 .faq-banner-text { display: flex; flex-direction: column; gap: 0.25rem; }
-
-/* optional tabs */
-.faq-tabs {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.faq-tab {
-  cursor: pointer;
-  border: 1px solid var(--coolgrey-20);
-  background: var(--coolgrey-0);
-  color: var(--coolgrey-80);
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-family: 'Archivo', system-ui, sans-serif;
-  font-size: 0.875rem;
-}
-.faq-tab.is-active {
-  background: var(--orange-70);
-  color: var(--coolgrey-0);
-  border-color: var(--orange-70);
-}
+.faq-banner-title { color: var(--coolgrey-100); font-size: 1.25rem; font-weight: 500; line-height: 1.1; }
+.faq-banner-desc  { color: var(--coolgrey-90); font-size: 0.875rem; line-height: 1.4; }
 
 @media (min-width: 1024px) {
-  .faq { padding: 6rem 0; }
+  .faq { padding: 6rem 0; }                 /* xl:py-24 */
+  .faq-title { font-size: 2.5rem; }         /* 40px desktop */
   .faq-banner { flex-direction: row; justify-content: space-between; text-align: left; }
   .faq-banner-text { align-items: flex-start; }
+  .faq-banner-cta { width: auto; }
 }
