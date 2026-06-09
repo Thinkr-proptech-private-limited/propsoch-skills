@@ -1,15 +1,20 @@
 /* ============================================================================
  * PROPSOCH DESIGN SYSTEM — FEATURED IN (plain CSS, no build step)
  * ============================================================================
- * The FeaturedIn press-logo strip (src/components/common/featured-in):
- *   a centered "Featured in" label above a row of press/media logos.
- * In the app it auto-scrolls (carousel); for a standalone LeadPages page use a
- * static centered/wrapped row (no JS). Optional marquee snippet at the bottom.
+ * The FeaturedIn press-logo strip: a centered "Featured in" label above an
+ * auto-scrolling marquee of press/media logos.
  *
- * Style measured from the live render. The logo SET is content — swap per page;
- * the layout/label STYLE stays exact.
+ * ⚠ Marquee matches the live LeadPages reference EXACTLY
+ * (ravi-agrawal-en9p / Arfn0tM68p-copy):
+ *   • a fixed VIEWPORT clips a wider TRACK
+ *   • the track holds the logo set DUPLICATED (logos…logos…)
+ *   • animation translateX(0 → -50%), 14s linear infinite (loops seamlessly
+ *     because the second copy lands exactly where the first started)
+ *   • pauses on hover
+ *   • each item: flex 0 0 25vw mobile → 25% desktop, logo in a 128px box
  *
- * Depends on: colors.css, typography.css. Font: Archivo.
+ * The logo SET is content — swap per page. The marquee STYLE stays exact.
+ * Depends on: typography.css / colors.css. Font: Archivo.
  *
  * ---- press logos (already in the LeadPages brand library) ------------------
  * Business Standard : .../api/library/ind78nya6g52syw9tt37rvde
@@ -17,18 +22,25 @@
  * Realty NXT        : .../api/library/vbyvp80xw1ae2kqepg7bj7yw
  * ANI               : .../api/library/ehhc2ahyx2pm50aeqdw2zil7
  * The Print         : .../api/library/tohoiyfmn94anwspr4jsus2y
- * (host: https://ravi-agrawal-en9p.pubhtml.com  — also htmlpub.com/api/library/<id>)
+ * (host https://ravi-agrawal-en9p.pubhtml.com — also htmlpub.com/api/library/<id>)
  *
- * ---- HTML pattern ----------------------------------------------------------
+ * ---- HTML pattern (DUPLICATE the logo set inside .logos for a seamless loop)-
  * <section class="featured">
- *   <div class="featured-inner">
- *     <span class="featured-label">Featured in</span>
- *     <div class="featured-row">
- *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ind78nya6g52syw9tt37rvde" alt="Business Standard" />
- *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ebmrp2tug01mmtxw2ynnkfts" alt="Mint" />
- *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/vbyvp80xw1ae2kqepg7bj7yw" alt="Realty NXT" />
- *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ehhc2ahyx2pm50aeqdw2zil7" alt="ANI" />
- *       <img class="featured-logo" src="https://ravi-agrawal-en9p.pubhtml.com/api/library/tohoiyfmn94anwspr4jsus2y" alt="The Print" />
+ *   <span class="featured-label">Featured in</span>
+ *   <div class="logos-viewport">
+ *     <div class="logos">
+ *       <!-- copy 1 -->
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ind78nya6g52syw9tt37rvde" alt="Business Standard"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ebmrp2tug01mmtxw2ynnkfts" alt="Mint"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/vbyvp80xw1ae2kqepg7bj7yw" alt="Realty NXT"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ehhc2ahyx2pm50aeqdw2zil7" alt="ANI"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/tohoiyfmn94anwspr4jsus2y" alt="The Print"></div></div>
+ *       <!-- copy 2 — identical, REQUIRED for the -50% seamless loop -->
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ind78nya6g52syw9tt37rvde" alt="Business Standard"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ebmrp2tug01mmtxw2ynnkfts" alt="Mint"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/vbyvp80xw1ae2kqepg7bj7yw" alt="Realty NXT"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/ehhc2ahyx2pm50aeqdw2zil7" alt="ANI"></div></div>
+ *       <div class="logo-item"><div class="logo-box"><img src="https://ravi-agrawal-en9p.pubhtml.com/api/library/tohoiyfmn94anwspr4jsus2y" alt="The Print"></div></div>
  *     </div>
  *   </div>
  * </section>
@@ -36,60 +48,75 @@
 
 .featured {
   display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.featured-inner {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;                       /* gap-4 */
+  gap: 16px;
+  padding: 32px 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
   width: 100%;
-  max-width: 80rem;                /* breakpoint-xl */
-  padding: 2rem 1rem;              /* py-8 mobile */
+}
+@media (min-width: 1280px) {
+  .featured { padding: 56px 0; }
 }
 
-.featured-label {                  /* para xs, normal, muted, centered */
-  font-size: 0.875rem;             /* 14px */
-  font-weight: 400;
-  color: var(--coolgrey-70);       /* #66677e */
+.featured-label {
+  font-size: 14px;
+  color: var(--coolgrey-70);        /* #66677E */
   text-align: center;
+  line-height: 1.35;
 }
 
-.featured-row {
+/* marquee — exact match to reference */
+.logos-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.logos {
   display: flex;
-  flex-wrap: wrap;
+  width: max-content;
+  align-items: center;
+  gap: 0;
+  animation: logos-scroll 14s linear infinite;
+}
+.logos:hover { animation-play-state: paused; }
+
+.logos .logo-item {
+  flex: 0 0 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+}
+@media (min-width: 1024px) {
+  .logos .logo-item { flex: 0 0 25%; }
+}
+
+.logos .logo-box {
+  width: 128px;
+  height: 128px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.5rem;                     /* breathing room between logos */
-  width: 100%;
 }
-.featured-logo {
-  height: 1.875rem;                /* ~30px — logos normalized to row height */
+.logos .logo-box img {
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
-  max-width: 9rem;
+  height: auto;
   object-fit: contain;
-  opacity: 0.9;
+  display: block;
 }
 
-@media (min-width: 1024px) {
-  .featured-inner { padding: 3.5rem 1rem; }   /* xl:py-14 */
-  .featured-row { gap: 4rem; }
-}
-
-/* ---- OPTIONAL auto-scroll marquee (mirrors the app carousel) --------------
- * Wrap the logos twice inside .featured-track for a seamless loop:
- * <div class="featured-marquee"><div class="featured-track">…logos…logos…</div></div>
- */
-.featured-marquee { width: 100%; overflow: hidden; }
-.featured-track {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  width: max-content;
-  animation: featured-scroll 30s linear infinite;
-}
-@keyframes featured-scroll {
+@keyframes logos-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logos { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; }
 }
