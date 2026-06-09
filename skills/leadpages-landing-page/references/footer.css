@@ -1,0 +1,134 @@
+/* ============================================================================
+ * PROPSOCH DESIGN SYSTEM — FOOTER (plain CSS, no build step)
+ * ============================================================================
+ * Canonical campaign footer (from src/app/campaigns/_shared/components/footer.tsx).
+ * Black background, centered on mobile → row on desktop, ending with a large
+ * "Propsoch" watermark. Paste this into the page <style> (after colors.css +
+ * typography.css) and use the HTML pattern below.
+ *
+ * Depends on: colors.css (palette vars + .text-neutral-inverted),
+ *             typography.css (.para-* / .label-* classes), Archivo font.
+ *
+ * ---- HTML pattern ----------------------------------------------------------
+ * <footer class="site-footer" role="contentinfo">
+ *   <div class="footer-inner">
+ *     <div class="footer-top">
+ *       <div class="footer-brand">
+ *         <img src="{{LOGO_WHITE_URL}}" alt="Propsoch" class="footer-logo" />   (white logo, see logos.md)
+ *         <p class="para-xsmall text-neutral-inverted footer-tagline">
+ *           Propsoch is the most advanced real estate research platform for homebuyers in India
+ *         </p>
+ *       </div>
+ *       <div class="footer-legal">
+ *         <ul class="footer-social">
+ *           <li><a href="#" aria-label="Follow Propsoch">{{SOCIAL_ICON}}</a></li>
+ *         </ul>
+ *         <p class="label-small text-neutral-inverted">Thinkr Proptech Private Limited</p>
+ *         <p class="label-small text-neutral-inverted footer-quiet">RERA: PRM/KA/RERA/1251/446/AG/220927/003103</p>
+ *         <p class="label-xsmall text-neutral-inverted footer-quiet footer-ids">
+ *           <span>GSTIN - 29AAJCT2519D1ZC</span><span>CIN - 21312215151661</span>
+ *         </p>
+ *       </div>
+ *     </div>
+ *     <hr class="footer-divider" />
+ *     <div class="footer-bottom label-xsmall text-neutral-inverted footer-quiet">
+ *       <nav class="footer-links" aria-label="Legal Links">
+ *         <a href="/meta/privacy">Privacy Policy</a>
+ *         <a href="/meta/terms">Terms &amp; Conditions</a>
+ *       </nav>
+ *       <span>&copy; Copyright Propsoch <span id="footer-year"></span></span>
+ *     </div>
+ *     <div class="footer-watermark" aria-hidden="true">Propsoch</div>
+ *   </div>
+ * </footer>
+ * <script>document.getElementById('footer-year').textContent=new Date().getFullYear()</script>
+ *
+ * Real legal lines (use verbatim): entity "Thinkr Proptech Private Limited",
+ * RERA PRM/KA/RERA/1251/446/AG/220927/003103, GSTIN 29AAJCT2519D1ZC, CIN 21312215151661.
+ * Legal links: /meta/privacy, /meta/terms.
+ * ============================================================================ */
+
+.site-footer {
+  width: 100%;
+  background: #000;            /* black */
+  color: var(--coolgrey-0);    /* white default text */
+}
+
+.footer-inner {
+  max-width: 80rem;            /* 1280px */
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 3.5rem 1rem;
+}
+
+.footer-top,
+.footer-brand,
+.footer-legal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.footer-logo { height: 48px; width: auto; }
+
+.footer-tagline {
+  max-width: 20rem;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-quiet { opacity: 0.6; }
+.footer-ids { display: flex; gap: 1rem; }
+
+.footer-divider {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--coolgrey-90);
+  opacity: 0.5;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.footer-links { display: flex; gap: 1.5rem; }
+
+.footer-watermark {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+  font-size: 3.5rem;
+  background: linear-gradient(to bottom, var(--orange-70), #000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (min-width: 1024px) {
+  .footer-inner { gap: 6rem; padding-top: 6rem; padding-bottom: 1.5rem; }
+  .footer-top { flex-direction: row; align-items: flex-start; justify-content: space-between; }
+  .footer-brand { flex-direction: row; align-items: flex-start; text-align: left; }
+  .footer-tagline { text-align: left; }
+  .footer-bottom { flex-direction: row; justify-content: space-between; }
+  .footer-watermark { font-size: 12rem; }
+}
