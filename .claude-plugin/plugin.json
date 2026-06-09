@@ -1,0 +1,18 @@
+{
+  "name": "leadpages-landing-page",
+  "description": "Build Propsoch marketing landing pages for LeadPages that follow the Propsoch design system — brand colors, Archivo typography, spacing tokens, max-w-7xl, mobile-responsive standalone HTML.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Propsoch"
+  },
+  "license": "MIT",
+  "keywords": [
+    "leadpages",
+    "landing-page",
+    "marketing",
+    "design-system",
+    "propsoch",
+    "tailwind"
+  ],
+  "skills": ["./skills/leadpages-landing-page"]
+}

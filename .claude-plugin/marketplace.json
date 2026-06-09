@@ -1,0 +1,31 @@
+{
+  "name": "propsoch-skills",
+  "id": "propsoch-skills",
+  "owner": {
+    "name": "Thinkr-proptech-private-limited"
+  },
+  "metadata": {
+    "description": "Propsoch's internal Claude skills — design-system-aware tooling for the team.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "leadpages-landing-page",
+      "source": "./",
+      "description": "Build Propsoch marketing landing pages for LeadPages that follow the Propsoch design system (brand colors, Archivo typography, spacing tokens, max-w-7xl, mobile-responsive).",
+      "version": "1.0.0",
+      "author": {
+        "name": "Propsoch"
+      },
+      "keywords": [
+        "leadpages",
+        "landing-page",
+        "marketing",
+        "design-system",
+        "propsoch",
+        "tailwind"
+      ],
+      "category": "workflow"
+    }
+  ]
+}
