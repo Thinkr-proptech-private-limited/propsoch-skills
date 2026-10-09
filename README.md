@@ -4,7 +4,7 @@ Claude Code skills for the Propsoch team, distributed as a plugin marketplace.
 
 ## leadpages-landing-page
 
-Builds Propsoch marketing landing pages for LeadPages that follow the Propsoch design system (brand colors + Archivo typography as plain CSS, 1280px max width, mobile-responsive). Walks you from page purpose → section wireframe → finished HTML.
+Builds Propsoch marketing landing pages for LeadPages that follow the Propsoch design system (brand colors + Archivo typography as plain CSS, 1280px max width, mobile-responsive). Walks you from page purpose → section wireframe → finished HTML. Use it to add Mixpanel events, lead creation API and form validation.
 
 ## critique
 
